@@ -1,10 +1,12 @@
 // server.js
+const dotenv = require('dotenv')
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors'); // Import cors
 const bodyParser = require('body-parser');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+
 
 app.use(bodyParser.json());
 
@@ -26,6 +28,11 @@ connection.connect((err) => {
         return;
     }
     console.log('Connected to MySQL database');
+});
+
+// Define a route to retrieve data from MySQL
+app.get('/', (req, res) => {
+    res.send('This is Home Page');
 });
 
 // Define a route to retrieve data from MySQL
